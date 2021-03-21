@@ -4,4 +4,7 @@
     <string name="tab_text_2">День</string>
     <string name="tab_text_3">Месяц</string>
     <string name="tab_text_4">Год</string>
+    <string name="current_country">Current country</string>
+    <string name="country_example">Moscow Example</string>
+    <string name="change_country">Change country</string>
 </resources>
