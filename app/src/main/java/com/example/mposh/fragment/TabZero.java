@@ -1,5 +1,6 @@
 package com.example.mposh.fragment;
 
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,16 +10,29 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.loader.content.AsyncTaskLoader;
 
 import com.example.mposh.R;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
+import java.util.Calendar;
+import java.util.Formatter;
+import java.util.Map;
 
 public class TabZero extends Fragment {
 
-    Spinner dropdown;
+    MViewModel viewModel = new MViewModel();
+
+    Button countryChooseButt;
     Button dayChooseButt;
 
     @Override
@@ -26,15 +40,75 @@ public class TabZero extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_country_day, container, false);
 
-        dropdown = rootView.findViewById(R.id.spinner_choose_country);
-        chooseTown();
+        countryChooseButt = rootView.findViewById(R.id.country_choose_button);
+        dayChooseButt     = rootView.findViewById(R.id.day_choose_button);
 
-        dayChooseButt = rootView.findViewById(R.id.);
+        countryChooseButt.setOnClickListener(countryClickListener);
+        dayChooseButt.setOnClickListener    (dayClickListener);
 
         return rootView;
     }
 
-    private void chooseTown() {
+    View.OnClickListener dayClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            LayoutInflater li;
+            View promptsView;
+            MaterialAlertDialogBuilder mDialogBuilder;
+            AlertDialog alertDialog = null;
+
+            //Получаем вид с файла popup_new_project.xml, который применим для диалогового окна:
+            li = LayoutInflater.from(getActivity());
+            promptsView = li.inflate(R.layout.popup_choose_day, null);
+
+            //Создаем AlertDialog
+            mDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+
+            //Настраиваем popup_new_project.xml для нашего AlertDialog:
+            mDialogBuilder.setView(promptsView);
+
+            //Настраиваем сообщение в диалоговом окне:
+            mDialogBuilder
+                    .setCancelable(false)
+                    .setPositiveButton(R.string.ok,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    CalendarView calendar = promptsView.findViewById(R.id.calendar);
+                                    final String[] date = {""};
+                                    calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+                                        @Override
+                                        public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth){
+                                            date[0] = dayOfMonth + " " + month + " " + year;
+                                            Log.d("TAG", "onClick: " + dayOfMonth + " " + month + " " + year);
+                                        }
+                                    });
+                                    calendar.setDate(calendar.getDate());
+                                    Log.d("TAG", "onClick: " + date[0]);
+//                                    viewModel.setDay(calendar.getDay);
+
+                                }
+                            })
+                    .setNegativeButton(R.string.cancel,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+
+            alertDialog = mDialogBuilder.create();
+
+            alertDialog.show();
+        }
+    };
+
+    View.OnClickListener countryClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+
+        }
+    };
+
+    /*private void chooseTown() {
         String[] items = new String[]{
                 "Country 1", "Country 2", "Country 3", "Country 4",
         };
@@ -53,6 +127,6 @@ public class TabZero extends Fragment {
 
             }
         });
-    }
+    }*/
 
 }
