@@ -9,10 +9,10 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.mposh.R;
-import com.example.mposh.fragment.TabOne;
+import com.example.mposh.fragment.TabZero;
 import com.example.mposh.fragment.TabThree;
 import com.example.mposh.fragment.TabTwo;
-import com.example.mposh.fragment.TabZero;
+import com.example.mposh.fragment.TabOne;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -33,10 +33,10 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0 :
-                TabZero tabZero = new TabZero();
-                return tabZero;
+                TabOne tabOne = new TabOne();
+                return tabOne;
             case 1:
-                TabOne one = new TabOne();
+                TabZero one = new TabZero();
                 return one;
             case 2:
                 TabTwo two = new TabTwo();
