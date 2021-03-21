@@ -2,6 +2,7 @@ package com.example.mposh;
 
 import android.os.Bundle;
 
+import com.example.mposh.domains.City;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.tabs.TabLayout;
@@ -15,12 +16,22 @@ import android.view.View;
 
 import com.example.mposh.ui.main.SectionsPagerAdapter;
 
+import java.io.File;
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
+    ArrayList<City> towns;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        File file=new File("E:\\Gena\\MPOSH1\\app\\src\\datas");
+        towns=new ArrayList<>();
+        String[] data=file.list();
+        for(String h: data){
+            towns.add(new City(h));
+        }
         SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(this, getSupportFragmentManager());
         ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(sectionsPagerAdapter);
