@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import androidx.loader.content.AsyncTaskLoader;
 
 import com.example.mposh.R;
+import com.example.mposh.SurfaceView1;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.Calendar;
@@ -31,6 +32,8 @@ import java.util.Map;
 public class TabZero extends Fragment {
 
     MViewModel viewModel = new MViewModel();
+
+    SurfaceView1 surfaceView1 = new SurfaceView1(getActivity());
 
     Button countryChooseButt;
     Button dayChooseButt;
@@ -104,7 +107,52 @@ public class TabZero extends Fragment {
     View.OnClickListener countryClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            LayoutInflater li;
+            View promptsView;
+            MaterialAlertDialogBuilder mDialogBuilder;
+            AlertDialog alertDialog = null;
 
+            //Получаем вид с файла popup_new_project.xml, который применим для диалогового окна:
+            li = LayoutInflater.from(getActivity());
+            promptsView = li.inflate(R.layout.popup_choose_country, null);
+
+            //Создаем AlertDialog
+            mDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
+
+            //Настраиваем popup_new_project.xml для нашего AlertDialog:
+            mDialogBuilder.setView(promptsView);
+
+            //Настраиваем сообщение в диалоговом окне:
+            mDialogBuilder
+                    .setCancelable(false)
+                    .setPositiveButton(R.string.ok,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    CalendarView calendar = promptsView.findViewById(R.id.calendar);
+                                    final String[] date = {""};
+                                    calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+                                        @Override
+                                        public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth){
+                                            date[0] = dayOfMonth + " " + month + " " + year;
+                                            Log.d("TAG", "onClick: " + dayOfMonth + " " + month + " " + year);
+                                        }
+                                    });
+                                    calendar.setDate(calendar.getDate());
+                                    Log.d("TAG", "onClick: " + date[0]);
+//                                    viewModel.setDay(calendar.getDay);
+
+                                }
+                            })
+                    .setNegativeButton(R.string.cancel,
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            });
+
+            alertDialog = mDialogBuilder.create();
+
+            alertDialog.show();
         }
     };
 
