@@ -9,85 +9,81 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
 
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="@dimen/activity_horizontal_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-
-        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
         >
 
         <LinearLayout
             android:id="@+id/linear_cur_country"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
 
             android:layout_alignParentTop="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
-            android:orientation="vertical">
+
+            android:orientation="vertical"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
 
                 android:text="@string/current_country">
 
             </TextView>
 
-            <TextView
+            <Button
+                style="@style/Widget.AppCompat.Button.Borderless"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:text="@string/country_example"
 
                 android:textColor="@color/black"
 
                 android:textSize="@dimen/big">
 
-            </TextView>
+            </Button>
         </LinearLayout>
 
         <LinearLayout
-
-            android:layout_marginStart="32dp"
-
-            android:id="@+id/linear_choose_country"
+            android:id="@+id/linear_cur_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_toEndOf="@+id/linear_cur_country"
+            android:layout_gravity="center"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/current_day" />
 
-                android:text="@string/change_country">
-
-            </TextView>
-
-            <Spinner
-                android:id="@+id/spinner_choose_country"
-                android:layout_width="match_parent"
+            <Button
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/day_example"
 
-                
+                android:textColor="@color/black"
 
-                />
+                android:textSize="@dimen/big">
 
-
-
-
+            </Button>
         </LinearLayout>
-
-
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

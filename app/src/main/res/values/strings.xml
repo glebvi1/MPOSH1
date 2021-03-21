@@ -6,7 +6,7 @@
     <string name="tab_text_4">Год</string>
     <string name="current_country">Current country</string>
     <string name="country_example">Moscow Example</string>
-    <string name="change_country">Change country</string>
+    <string name="choose_country">Choose country</string>
     <string name="current_day">Current day</string>
     <string name="day_example">21 March</string>
     <string name="choose_day">Choose day</string>

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -18,14 +19,17 @@ import com.example.mposh.R;
 public class TabZero extends Fragment {
 
     Spinner dropdown;
+    Button dayChooseButt;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.fragment_country_choose, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_country_day, container, false);
 
         dropdown = rootView.findViewById(R.id.spinner_choose_country);
         chooseTown();
+
+        dayChooseButt = rootView.findViewById(R.id.);
 
         return rootView;
     }
