@@ -54,7 +54,7 @@
 
         <LinearLayout
 
-            android:layout_marginLeft="32dp"
+            android:layout_marginStart="32dp"
 
             android:id="@+id/linear_choose_country"
             android:layout_width="wrap_content"
