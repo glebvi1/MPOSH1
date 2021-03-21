@@ -19,6 +19,10 @@ import com.example.mposh.ui.main.SectionsPagerAdapter;
 import java.io.File;
 import java.util.ArrayList;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     ArrayList<City> towns;
 
