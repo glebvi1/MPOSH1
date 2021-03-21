@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.mposh.R;
 import com.example.mposh.SurfaceView1;
+import com.example.mposh.domains.City;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class TabOne extends Fragment {
@@ -19,7 +21,14 @@ public class TabOne extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        ArrayList<City> towns;
 
+        File file=new File("E:\\Gena\\MPOSH1\\app\\src\\datas");
+        towns=new ArrayList<>();
+        String[] data=file.list();
+        for(String h: data){
+            towns.add(new City(h));
+        }
 
 //        View rootView = inflater.inflate(R.layout.grphics, container, false);
 
