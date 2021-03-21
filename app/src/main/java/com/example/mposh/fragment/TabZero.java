@@ -32,7 +32,7 @@ public class TabZero extends Fragment {
 
     private void chooseTown() {
         String[] items = new String[]{
-                "Choose apple", "Choose boy", " Choose cat", "Choose dog",
+                "Country 1", "Country 2", "Country 3", "Country 4",
         };
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, items);
