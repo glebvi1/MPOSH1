@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.mposh.R;
 import com.example.mposh.SurfaceView1;
 
 import java.util.ArrayList;
@@ -18,6 +19,10 @@ public class TabOne extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
+
+//        View rootView = inflater.inflate(R.layout.grphics, container, false);
+
         ArrayList<Float> f = new ArrayList<Float>();
         f.add(1f);
         f.add(2f);
@@ -27,6 +32,7 @@ public class TabOne extends Fragment {
         f.add(6f);
 
         SurfaceView1 s = new SurfaceView1(super.getContext());
+
         s.get1(f);
         return s;
         //return inflater.inflate( R.layout.life_fragment, container, false );

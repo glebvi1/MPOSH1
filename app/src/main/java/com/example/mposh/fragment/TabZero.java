@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.loader.content.AsyncTaskLoader;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.mposh.R;
 import com.example.mposh.SurfaceView1;
@@ -33,7 +35,7 @@ public class TabZero extends Fragment {
 
     MViewModel viewModel = new MViewModel();
 
-    SurfaceView1 surfaceView1 = new SurfaceView1(getActivity());
+//    SurfaceView1 surfaceView1 = new SurfaceView1(getActivity());
 
     Button countryChooseButt;
     Button dayChooseButt;
@@ -119,6 +121,10 @@ public class TabZero extends Fragment {
             //Создаем AlertDialog
             mDialogBuilder = new MaterialAlertDialogBuilder(getActivity());
 
+            RecyclerView recyclerView = promptsView.findViewById(R.id.recyclerview);
+
+//            recyclerView.setAdapter(new SimpleAdapter());
+
             //Настраиваем popup_new_project.xml для нашего AlertDialog:
             mDialogBuilder.setView(promptsView);
 
@@ -128,17 +134,8 @@ public class TabZero extends Fragment {
                     .setPositiveButton(R.string.ok,
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    CalendarView calendar = promptsView.findViewById(R.id.calendar);
-                                    final String[] date = {""};
-                                    calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-                                        @Override
-                                        public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayOfMonth){
-                                            date[0] = dayOfMonth + " " + month + " " + year;
-                                            Log.d("TAG", "onClick: " + dayOfMonth + " " + month + " " + year);
-                                        }
-                                    });
-                                    calendar.setDate(calendar.getDate());
-                                    Log.d("TAG", "onClick: " + date[0]);
+
+
 //                                    viewModel.setDay(calendar.getDay);
 
                                 }

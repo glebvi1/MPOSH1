@@ -65,9 +65,16 @@ public class SurfaceView1 extends SurfaceView implements SurfaceHolder.Callback{
                 Canvas canvas = surfaceHolder.lockCanvas();
                 if (canvas != null) {
                     Paint paint = new Paint();
-                    paint.setColor(Color.BLACK);
-                    for (int i = 1; i < points.size() - 1; i++) {
-                        canvas.drawPoint(points.get(i - 1), points.get(i), paint);
+                    paint.setColor(Color.GREEN);
+                    for (int i = 0; i < canvas.getHeight(); i++) {
+                        for (int j = 0; j < canvas.getWidth(); j++) {
+                            canvas.drawPoint(i,j,paint);
+                        }
+                    }
+                    paint.setColor(Color.RED);
+
+                    for (int i = 1; i < points.size()-1; i++) {
+                        canvas.drawLine((float) Math.ceil(canvas.getWidth()/(points.size()*i)), points.get(i), (float) Math.ceil(canvas.getWidth()/(points.size()*(i+1))), points.get(i+1), paint);
                     }
 
                     getHolder().unlockCanvasAndPost(canvas);
